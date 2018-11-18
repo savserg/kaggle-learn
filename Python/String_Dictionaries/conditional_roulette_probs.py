@@ -24,9 +24,6 @@ def conditional_roulette_probs(history):
         tmpD[el] = tmpDD  
     return tmpD
 
-
-q5.check()
-
 def conditional_roulette_probs(history):
     # dict where keys are numbers and values are dicts
     # counts[a][b] is the number of times we've spun the number b immediately after spinning a
