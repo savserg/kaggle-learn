@@ -1,4 +1,33 @@
 def conditional_roulette_probs(history):
+    """
+
+    Example: 
+    conditional_roulette_probs([1, 3, 1, 5, 1])
+    > {1: {3: 0.5, 5: 0.5}, 
+       3: {1: 1.0},
+       5: {1: 1.0}
+      }
+    """
+    tmpD = {}
+    for i in range(len(history)-1):
+        if history[i] not in tmpD:
+            tmpD[history[i]] = {}
+        if history[i+1] not in tmpD[history[i]]:
+            tmpD[history[i]][history[i+1]] = 0
+        tmpD[history[i]][history[i+1]] +=1
+    for el in tmpD:
+        sum = 0.0
+        for i in tmpD[el]:
+            sum +=tmpD[el][i]
+        tmpDD = {}
+        tmpDD = {i:value/sum for i, value in tmpD[el].items()}
+        tmpD[el] = tmpDD  
+    return tmpD
+
+
+q5.check()
+
+def conditional_roulette_probs(history):
     # dict where keys are numbers and values are dicts
     # counts[a][b] is the number of times we've spun the number b immediately after spinning a
     counts = {}
